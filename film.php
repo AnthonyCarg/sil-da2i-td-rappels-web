@@ -1,6 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="en">
 	<?php
+		require 'Movie.php'; // J'inclus la classe.
+		$objet = new Movie; 
+	
 		// connexion et choix de la BD
 		try {
 			$user='root';
@@ -53,6 +56,13 @@
 						print('<a>' . $row['prenom'] . ' ' . $row['nom'] . '</a>');
 					}
 				?>
+				</div>
+			  </li>
+			  <li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Gestion</a>
+				<div class="dropdown-content">
+					<a href="">Ajouter un film</a>
+					<a href="">Liste des films</a>
 				</div>
 			  </li>
 			</ul>

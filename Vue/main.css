@@ -1,0 +1,116 @@
+img.film {
+    margin-left: 10px;
+	margin-right: 25px;
+	width: 900px;
+    height: 700px;
+}
+	
+img.personne {
+    margin-left: 10px;
+	margin-right: 25px;
+	width: 350px;
+    height: 450px;
+}
+
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media screen and (min-width: 901px) {
+	
+	img.film {
+		max-width: 1000px;
+		max-height: 800px;
+	}
+	
+	img.personne {
+		max-width: 400px;
+		max-height: 200px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	
+	img.film {
+		max-width: 500px;
+		max-height: 400px;
+	}
+	
+	img.personne {
+		max-width: 250px;
+		max-height: 250px;
+	}
+	
+	ul.navbar {
+		width: 900px;
+	}
+
+	li a, .dropbtn {
+		font-size: 125%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	
+	img.film {
+		max-width: 400px;
+		max-height: 300px;
+	}
+	
+	img.personne {
+		max-width: 150px;
+		max-height: 80px;
+	}
+	
+	ul.navbar {
+		width: 500px;
+	}
+
+	li a, .dropbtn {
+		font-size: 150%;
+	}
+
+}
