@@ -1,88 +1,27 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<?php
-		// connexion et choix de la BD
-		try {
-			$user='root';
-			$pass='root';
-			$dbh = new PDO('mysql:host=localhost;dbname=film', $user, $pass);
-			//$dbh = null;
-		} catch (PDOException $e) {
-			print "Erreur !: " . $e->getMessage() . "<br/>";
-			die();
-		}
-	?>
-	<head>
-		<meta charset="UTF-8">
-		<title>Réalisateur: 
-		<?php	
-			foreach($dbh->query('SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Realisateur\' and film_has_personne.id_film = 1') as $row) {
-				print($row['prenom'] . ' ' . $row['nom']);
-				$real_nom = $row['nom'];
-				$real_prenom = $row['prenom'];
-			}
-		?></title>
-		<link rel="stylesheet" href="main.css">
-	</head>
-	<body>
-		<header>
-			<ul class="navbar">
-			  <li class="dropdown">
-				<a href="javascript:void(0)" class="dropbtn">Films</a>
-				<div class="dropdown-content">
-				<?php	
-					foreach($dbh->query('SELECT titre FROM `film` order by titre') as $row) {
-						print('<a href="film.php">' . $row['titre']  . '</a>');
-					}
-				?>
-				</div>
-			  </li>
-			  <li class="dropdown">
-				<a href="javascript:void(0)" class="dropbtn">Réalisateurs</a>
-				<div class="dropdown-content">
-				<?php	
-					foreach($dbh->query('SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Realisateur\' order by personne.nom, personne.prenom') as $row) {
-						print('<a href="realisateur.php">' . $row['prenom'] . ' ' . $row['nom'] . '</a>');
-					}
-				?>
-				</div>
-			  </li>
-			  <li class="dropdown">
-				<a href="javascript:void(0)" class="dropbtn">Acteurs</a>
-				<div class="dropdown-content">
-				<?php	
-					foreach($dbh->query('SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Acteur\' order by personne.nom, personne.prenom') as $row) {
-						print('<a>' . $row['prenom'] . ' ' . $row['nom'] . '</a>');
-					}
-					//$dbh = null;
-				?>
-				</div>
-			  </li>
-			  <li class="dropdown">
-				<a href="javascript:void(0)" class="dropbtn">Gestion</a>
-				<div class="dropdown-content">
-					<a href="">Ajouter un film</a>
-					<a href="">Liste des films</a>
-				</div>
-			  </li>
-			</ul>
-		</header>
+<?php require 'Vue/header.php'; ?>
 			<main>
 				<section>
 					<h1>Réalisateur</h1>
 					<h2 class="photo">Présentation</h2>
-						<?php  
-							foreach($dbh->query('SELECT photo.chemin, photo.legende, film_has_personne.role FROM `personne_has_photo` left join `photo` on photo.id = personne_has_photo.id_photo join `film_has_personne` on film_has_personne.id_personne = personne_has_photo.id_personne where film_has_personne.role = "Realisateur" and film_has_personne.id_film = 1') as $row) {
-								print('<figure><img class="personne" src="'.$row['chemin'].'" alt="'.$row['legende'].'"><figcaption>'.$row['legende'].'</figcaption></figure>');
+					<?php  
+							$sql = 'SELECT photo.chemin, photo.legende, film_has_personne.role FROM `personne_has_photo` left join `photo` on photo.id = personne_has_photo.id_photo join `film_has_personne` on film_has_personne.id_personne = personne_has_photo.id_personne where film_has_personne.role = "Realisateur" and film_has_personne.id_film = 1';
+							$prepare = $db->prepare($sql);
+							$query = $db->execute();
+							$fetch = $db->fetch($query);
+							for ($i = 0; $i < count($fetch); $i++) {
+								print('<figure><img class="personne" src="'.$fetch[$i]['chemin'].'" alt="'.$fetch[$i]['legende'].'"><figcaption>'.$fetch[$i]['legende'].'</figcaption></figure>');
 							}
-						echo '<p>Il est née le <time datetime="2001-05-15T19:00">';
-						foreach($dbh->query('SELECT date_de_naissance, biographie FROM personne WHERE id=1') as $row) {
-							//nom='.$real_nom.' and prenom='.$real_prenom
-							print($row['date_de_naissance']);
-							echo '</time>.</p>';
-							echo '<h2>Biographie</h2>';
-							print($row['biographie']);
-						}
+							echo '<p>Il est née le <time datetime="2001-05-15T19:00">';
+							$sql = 'SELECT date_de_naissance, biographie FROM personne WHERE id=1';
+							$prepare = $db->prepare($sql);
+							$query = $db->execute();
+							$fetch = $db->fetch($query);
+							for ($i = 0; $i < count($fetch); $i++) {
+								print($fetch[$i]['date_de_naissance']);
+								echo '</time>.</p>';
+								echo '<h2>Biographie</h2>';
+								print($fetch[$i]['biographie']);
+							}
 						
 					?>
 					<h2>Filmographie</h2>
@@ -128,16 +67,15 @@
 						</ul>
 					<h2>Acteurs fétiches</h2>
 					<?php  
-						foreach($dbh->query('SELECT photo.chemin, photo.legende, film_has_personne.role FROM `personne_has_photo` left join `photo` on photo.id = personne_has_photo.id_photo join `film_has_personne` on film_has_personne.id_personne = personne_has_photo.id_personne where film_has_personne.role = "Acteur" and personne_has_photo.id_personne = 2 or personne_has_photo.id_personne = 5') as $row) {
-							print('<figure><img class="personne" src="'.$row['chemin'].'" alt="'.$row['legende'].'"><figcaption>'.$row['legende'].'</figcaption></figure>');
+						$sql = 'SELECT photo.chemin, photo.legende, film_has_personne.role FROM `personne_has_photo` left join `photo` on photo.id = personne_has_photo.id_photo join `film_has_personne` on film_has_personne.id_personne = personne_has_photo.id_personne where film_has_personne.role = "Acteur" and personne_has_photo.id_personne = 2 or personne_has_photo.id_personne = 5';
+						$prepare = $db->prepare($sql);
+						$query = $db->execute();
+						$fetch = $db->fetch($query);
+						for ($i = 0; $i < count($fetch); $i++) {
+							print('<figure><img class="personne" src="'.$fetch[$i]['chemin'].'" alt="'.$fetch[$i]['legende'].'"><figcaption>'.$fetch[$i]['legende'].'</figcaption></figure>');
 						}
-						$dbh = null
 					?>
 					
 				</section>
 			</main>
-		<footer>
-			<address>Auteur: Anthony Cargnino</address>
-		</footer>
-	</body>
-</html>
+<?php require 'Vue/footer.php'; ?>

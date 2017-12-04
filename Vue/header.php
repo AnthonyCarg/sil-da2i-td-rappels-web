@@ -1,9 +1,4 @@
 <?php
-//
-//
-//TU DOIS PLUS AVOIR DE HTML
-//
-//
 echo '<!doctype html>
 <html class="no-js" lang="en">
 	<head>
