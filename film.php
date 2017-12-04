@@ -87,7 +87,5 @@
 							for ($i = 0; $i < count($fetch); $i++) {
 								print('<figure><img class="personne" src="'.$fetch[$i]['chemin'].'" alt="'.$fetch[$i]['legende'].'"><figcaption>'.$fetch[$i]['legende'].'</figcaption></figure>');
 							}
-						?>
-				</section>
-			</main>
+						?>			
 <?php require 'Vue/footer.php'; ?>	
