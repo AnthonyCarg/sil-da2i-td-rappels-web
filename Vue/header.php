@@ -60,7 +60,16 @@ echo '<header>
 					echo '<a>Ajouter un film</a>';
 					echo '<a>Liste des films</a>';
 				echo '</div>';
-			  echo '</li>';
+				echo '</li>';
+				echo '</li>';
+					echo '<li class="dropdown">';
+					echo '<a href="javascript:void(0)" class="dropbtn">Sélecteurs et effets</a>';
+					echo '<div class="dropdown-content">';
+					echo '<button id="hideAside">Cacher le Aside</button>';
+					echo '<button id="fadeImg">Fondu des images</button>';
+					echo '<button id="toggleMenu">Basculer le menu</button>';
+					echo '</div>';
+				echo '</li>';
 			echo '</ul>';
 echo '</header>';
 ?>
