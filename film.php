@@ -1,8 +1,3 @@
-	<?php
-		require 'Movie.php'; // J'inclus la classe.
-		$objet = new Movie; 
-	
-	?>
 <?php require 'Vue/header.php'; ?>
 			<main>
 				<section>

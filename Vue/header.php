@@ -11,10 +11,12 @@
 <body>
 <main>
 <?php
-	require 'DB.php'; // J'inclus la classe.
-	$db = new DB; 
-	
-	$connect = $db->connect();
+	require 'classes\Director.php'; // J'inclus la classe Director.
+	$director = new Director; 
+	require 'classes\Actor.php'; // J'inclus la classe Actor.
+	$actor = new Actor;
+	require 'classes\Movie.php'; // J'inclus la classe Movie.
+	$movie = new Movie; 
 ?>
 	<header>
 	<ul class="navbar">
@@ -22,27 +24,15 @@
 			<a href="javascript:void(0)" class="dropbtn">Films</a>
 				<div class="dropdown-content">
 				<?php
-					$sql = 'SELECT titre FROM `film` order by titre';
-					$prepare = $db->prepare($sql);
-					$query = $db->execute();
-					$fetch = $db->fetch($query);
-					for ($i = 0; $i < count($fetch); $i++) {
-						print('<a href="film.php">' . $fetch[$i]['titre']  . '</a>');
-					}
+					$movie->getAllMovies();
 				?>
-				</div>
+				</div> 
 				</li>
 				<li class="dropdown">
 				<a href="javascript:void(0)" class="dropbtn">Réalisateurs</a>
 				<div class="dropdown-content">
 				<?php
-					$sql = 'SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Realisateur\' order by personne.nom, personne.prenom';
-					$prepare = $db->prepare($sql);
-					$query = $db->execute();
-					$fetch = $db->fetch($query);
-					for ($i = 0; $i < count($fetch); $i++) {
-						print('<a href="realisateur.php">' . $fetch[$i]['prenom'] . ' ' . $fetch[$i]['nom'] . '</a>');
-					}
+					$director->getAllDirectors();
 				?>
 				</div>
 				</li>
@@ -50,13 +40,7 @@
 				<a href="javascript:void(0)" class="dropbtn">Acteurs</a>
 				<div class="dropdown-content">
 				<?php
-					$sql = 'SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Acteur\' order by personne.nom, personne.prenom';
-					$prepare = $db->prepare($sql);
-					$query = $db->execute();
-					$fetch = $db->fetch($query);
-					for ($i = 0; $i < count($fetch); $i++) {
-						print('<a>' . $fetch[$i]['prenom'] . ' ' . $fetch[$i]['nom'] . '</a>');
-					}
+					$actor->getAllActors();
 				?>
 				</div>
 				</li>
