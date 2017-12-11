@@ -20,7 +20,7 @@ class Movie
 		$query = $db->execute();
 		$fetch = $db->fetch($query);
 		for ($i = 0; $i < count($fetch); $i++) {
-			print('<a href="film.php">' . $fetch[$i]['titre']  . '</a>');
+			print('<a href="?dest=Movie">' . $fetch[$i]['titre']  . '</a>');
 		}
 	}
 

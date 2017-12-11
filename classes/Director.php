@@ -16,7 +16,7 @@ class Director
 		$query = $db->execute();
 		$fetch = $db->fetch($query);
 		for ($i = 0; $i < count($fetch); $i++) {
-			print('<a href="realisateur.php">' . $fetch[$i]['prenom'] . ' ' . $fetch[$i]['nom'] . '</a>');
+			print('<a href="?dest=Director">' . $fetch[$i]['prenom'] . ' ' . $fetch[$i]['nom'] . '</a>');
 		}
 	}
 	
