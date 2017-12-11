@@ -15,12 +15,12 @@ class Movie
 		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
-		$sql = 'SELECT titre FROM `film` order by titre';
+		$sql = 'SELECT id, titre FROM `film` order by titre';
 		$prepare = $db->prepare($sql);
 		$query = $db->execute();
 		$fetch = $db->fetch($query);
 		for ($i = 0; $i < count($fetch); $i++) {
-			print('<a href="?dest=Movie">' . $fetch[$i]['titre']  . '</a>');
+			print('<a href="?dest=Movie&id='. $fetch[$i]['id'] .'">' . $fetch[$i]['titre']  . '</a>');
 		}
 	}
 
