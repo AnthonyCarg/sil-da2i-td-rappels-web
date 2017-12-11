@@ -6,7 +6,14 @@ function page($class) {
 	$page->accueil();
 }
 
-$dest = $_GET['dest'];
-page($dest.'Controller');
-
+if (isset($_GET['dest'])) // On a le nom et le prénom
+{
+	$dest = $_GET['dest'];
+	page($dest.'Controller');
+}
+else
+{
+	$dest = 'Home';
+	page($dest.'Controller');
+}
 ?>

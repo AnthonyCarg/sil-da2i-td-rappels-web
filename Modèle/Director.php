@@ -8,7 +8,7 @@ class Director
 	public function __construct() { }
 	
 	static function getAllDirectors() {
-		require_once "DB.php";
+		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
 		$sql = 'SELECT personne.nom, personne.prenom FROM `film_has_personne` left join `personne` on personne.id = film_has_personne.id_personne WHERE film_has_personne.role = \'Realisateur\' and film_has_personne.id_film = 1 order by personne.nom, personne.prenom';
@@ -21,7 +21,7 @@ class Director
 	}
 	
 	function getBaseInfos(){
-		require_once "DB.php";
+		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
 		echo '<main>

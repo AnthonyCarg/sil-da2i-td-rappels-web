@@ -11,11 +11,11 @@
 <body>
 <main>
 <?php
-	require 'classes\Director.php'; // J'inclus la classe Director.
+	require 'Modèle\Director.php'; // J'inclus la classe Director.
 	$director = new Director; 
-	require 'classes\Actor.php'; // J'inclus la classe Actor.
+	require 'Modèle\Actor.php'; // J'inclus la classe Actor.
 	$actor = new Actor;
-	require 'classes\Movie.php'; // J'inclus la classe Movie.
+	require 'Modèle\Movie.php'; // J'inclus la classe Movie.
 	$movie = new Movie; 
 ?>
 	<header>

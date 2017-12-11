@@ -12,7 +12,7 @@ class Movie
 	public function __construct() { }
 
 	static function getAllMovies() {
-		require_once "DB.php";
+		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
 		$sql = 'SELECT titre FROM `film` order by titre';
@@ -25,7 +25,7 @@ class Movie
 	}
 
 	function getBaseInfos(){
-		require_once "DB.php";
+		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
 		echo '<main>
