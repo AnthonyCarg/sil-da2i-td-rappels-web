@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 	<head>
 	<meta charset="UTF-8">
-	<title>Film: Django Unchained</title>
+	<title>WikiMovie</title>
 	<link rel="stylesheet" href="Vue/main.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -48,6 +48,8 @@
 					<a href="javascript:void(0)" class="dropbtn">Gestion</a>
 					<div class="dropdown-content">
 						<a>Ajouter un film</a>
+						<a>Modifier un film</a>
+						<a>Supprimer un film</a>
 						<a>Liste des films</a>
 					</div>
 				</li>
