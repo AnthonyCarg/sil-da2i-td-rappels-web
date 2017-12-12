@@ -1,7 +1,5 @@
 <?php
 
-
-
 class ActorController {
 	
 	public function __construct() {
@@ -11,7 +9,6 @@ class ActorController {
 	function accueil() {
 		require_once 'Vue/header.php';
 		require_once 'Vue/footer.php';	
-	}
-	
+	}	
 }
 ?>

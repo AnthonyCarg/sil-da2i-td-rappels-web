@@ -11,6 +11,5 @@ class MovieController {
 		$movie->getBaseInfos();	
 		require_once 'Vue/footer.php';	
 	}
-	
 }
 ?>

@@ -11,6 +11,5 @@ class HomeController {
 		require_once 'Vue/home.php';	
 		require_once 'Vue/footer.php';
 	}
-	
 }
 ?>

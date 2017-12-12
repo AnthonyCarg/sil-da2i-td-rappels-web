@@ -11,6 +11,5 @@ class DirectorController {
 		$director->getBaseInfos();	
 		require_once 'Vue/footer.php';	
 	}
-	
 }
 ?>

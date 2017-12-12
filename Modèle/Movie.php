@@ -28,9 +28,7 @@ class Movie
 		require_once "classes/DB.php";
 		$db = new DB; 
 		$connect = $db->connect();
-		echo '<main>
-				<section>
-					<h1>';  
+		echo '<h1>';  
 							$sql = 'SELECT titre FROM film WHERE titre = \'Django Unchained\'';
 							$prepare = $db->prepare($sql);
 							$query = $db->execute();
